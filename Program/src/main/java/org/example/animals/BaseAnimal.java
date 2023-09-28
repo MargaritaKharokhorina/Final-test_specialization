@@ -1,23 +1,39 @@
 package main.java.org.example.animals;
 
-public class BaseAnimal {
-    public String name; // Имя животного
-    public String mainClass; // Класс животного
-    public String nameClass; // Подкласс животного
-    public String birthday; // Дата рождения
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
-    public String[] skills; // Умения
+public abstract class BaseAnimal {
+    protected String name; // Имя животного
+    protected String mainClass; // Класс животного
+    protected String nameClass; // Подкласс животного
+    protected Date birthday; // Дата рождения
 
-    public BaseAnimal (String name, String mainClass, String nameClass, String birthday, String[] skills) {
+    protected ArrayList skills; // Умения
+
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+    public BaseAnimal (String name, String mainClass, String nameClass, String birthday, ArrayList skills) throws ParseException {
         this.name = name;
         this.mainClass = mainClass;
         this.nameClass = nameClass;
-        this.birthday = birthday;
+        this.birthday = format.parse(birthday);
         this.skills = skills;
     }
 
     public String getInfo() {
-        String str = mainClass + " " + nameClass + " " + name + " " + birthday + " " + String.join(" / ",skills);
+        String str = mainClass + " " + nameClass + " " + name + " " + new SimpleDateFormat("yyyy-MM-dd").format(birthday) + " " + String.join(" / ",skills);
         return str;
     }
+
+    public ArrayList getSkills() {
+        return this.skills;
+    }
+
+    public void setSkills(ArrayList skills) {
+        this.skills = skills;
+    }
+
 }

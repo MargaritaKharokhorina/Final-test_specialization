@@ -1,5 +1,15 @@
 package main.java.org.example.animals.Pets;
 
-public class Cats {
+import main.java.org.example.animals.Pet;
+
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Cats extends Pet {
+    public Cats(String name, String birthday, ArrayList skills) throws ParseException {
+        super(name, "Кошка", birthday, skills);
+    }
     
 }
